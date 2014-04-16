@@ -1,0 +1,14 @@
+$LOAD_PATH.unshift('../lib/')
+
+task  :default => [ :test_std_effectors, :test_API ] 
+
+desc 'Test the standard effectors'
+task :test_std_effectors do
+     ruby 'test_fto_effectors.rb'
+end
+
+desc 'Test the API'
+task :test_API do
+     ruby 'test_fto_api.rb'
+end
+

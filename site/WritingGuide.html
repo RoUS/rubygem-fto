@@ -1,0 +1,289 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <link rel="stylesheet" href="css/screen.css" type="text/css" media="screen" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Formatted Textual Output: Writing Your own Effectors</title>
+  </head>
+  <body>
+    <h1>Formatted Textual Output V0.1.1</h1>
+
+    <h2>Guide to Writing Your Own Effectors</h2>
+    <p>
+      Let's start with something easy &mdash;
+      implementing <tt>printf</tt>'s string directive, <tt>%s</tt>.  The
+      actual syntax of the <tt>printf</tt> directives is fairly complex,
+      so let's begin with a simple 'insert a string' mechanism.
+    </p>
+    <p class="note">
+      Note:
+      <br/>
+      One rule to remember: No two effectors can have the same name
+      and priority.
+    </p>
+    <p>
+      There's more to an effector definition that just the code; we need
+      to fill in a bunch of other blanks first.  Here's a starting point:
+    </p>
+    <pre>
+  include FormatText
+  FTO.clearEffectorList()
+  e = Effector.new({
+                     :name        =&gt; 'printf %s',
+                     :category    =&gt; _('String insertion'),
+                     :syntax      =&gt; '%s',
+                     :priority    =&gt; 5000,
+                     :description =&gt; _('Insert a string.'),
+                     :reMatch     =&gt; '%s',
+                     :reExtra     =&gt; '%s',
+                     :dWidth      =&gt; :NA,
+                     :code        =&gt; lambda {
+                       | eContext |
+                       e = eContext.effectorObj
+                       result = eContext.argList.first.to_s
+                       return result
+                     }
+                   })
+  FTO.registerEffector(e)
+    </pre>
+    <p>
+      We'll concentrate on the code later, but for now let's look at the
+      other pieces of the definition.
+    </p>
+    <dl class="hashkeys">
+      <dt>:name        =&gt; 'printf %s'</dt>
+      <dd>
+        <p>
+          This is just a terse name for the directive.  It provides a
+          human-readable shorthand reference, and is used in sorting
+          the list of effectors and when documentation is extracted
+          from the effector list.  It should <b>not</b> be subjected to
+          <tt>gettext</tt> interpretation.
+        </p>
+      </dd>
+      <dt>:category    =&gt; _('String insertion')</dt>
+      <dd>
+        <p>
+          This attribute is solely for use in documentation; it aids in
+          grouping related effectors together.  Because of this role,
+          it can contain markup and it is appropriate for it to be bracketed
+          by the <tt>_(...)</tt> call for <tt>gettext</tt> processing.
+        </p>
+      </dd>
+      <dt>:syntax      =&gt; '%[&lt;i&gt;w&lt;/i&gt;]s'</dt>
+      <dd>
+        <p>
+          This key is also solely for documentation purposes, and provides
+          a quick reference to the effector's usage syntax (duh!).  Markup
+          is very appropriate, but <tt>gettext</tt> processing is not.  (The
+          syntax isn't language-specific, after all.)
+        </p>
+      </dd>
+      <dt>:priority    =&gt; 5000</dt>
+      <dd>
+        <p>
+          The priority value is used by the documentation extractor to organise
+          entries in the documentation table, and is also integral to
+          the internal handling.
+        </p>
+      </dd>
+      <dt>:description =&gt; _('Insert a string.')</dt>
+      <dd>
+        <p>
+          This attribute is also used solely for documentation purposes.
+          It can be as long or as brief as you like, and can contain markup.
+          It should be marked for <tt>gettext</tt> processing by enclosing
+          it in <tt>_(...)</tt>.
+        </p>
+      </dd>
+      <dt>:reMatch     =&gt; '%s'</dt>
+      <dd>
+        <p>
+          This is the regular expression used to match the effector in the
+          format string.  It can be either a string or an <i>Regexp</i>
+          object.
+        </p>
+        <p class="note">
+          Note:
+          <br/>
+          Make sure that your regular expressions are sufficiently unique
+          as to not match each other!
+        </p>
+      </dd>
+      <dt>:reExtra     =&gt; '%s'</dt>
+      <dd>
+        <p>
+          The <tt>:reExtra</tt> attribute is used to specify an additional
+          regular expression used by the effector function to extract
+          information from the matched string &mdash;
+          a field width, for instance.
+        </p>
+      </dd>
+      <dt>:dWidth      =&gt; :NA</dt>
+      <dd>
+          This specifies the default width of the effector's output.  It is
+          used both in documentation and as input to the effector function.
+          It may be one of a set of symbols, a <i>String</i>, or a
+          <i>Fixnum</i>.  The symbol and <i>String</i> formats are used only
+          for documentation; the numeric value is used for documentation and
+          may also be useful input to the function.  Possible symbol values
+          are:
+        <dl class="hashkeys">
+          <dt>:NA</dt>
+          <dd>
+              'Default width' is meaningless for this effector.
+          </dd>
+          <dt>:asNeeded</dt>
+          <dd>
+              By default, the effector's output will use as many
+              characters/columns as are necessary to represent the value.
+          </dd>
+          <dt>:asSpecified</dt>
+          <dd>
+              A field width is a required part of the effector syntax, so
+              there <i>is</i> no default value.
+          </dd>
+        </dl>
+      </dd>
+    </dl>
+    <p>
+      Now let's move on to the code that implements the <tt>%s</tt>
+      directive.
+    </p>
+    <pre>
+                     :code        =&gt; lambda {
+                       | eContext |
+                       e = eContext.effectorObj
+                       result = eContext.argList.first.to_s
+                       return result
+                     }
+    </pre>
+    <p>
+      This is implemented as an anonymous <i>lambda</i> function, but
+      it needn't be.  Any sort of <i>Proc</i> object that takes a
+      single argument and returns a string can serve in this capacity.
+    </p>
+    <p>
+      The sole argument to the effector function is a
+      <i>FormatText::Context</i> object.  The <i>Context</i> class
+      is essentially just a container, with no real methods of its
+      own other than a constructor (which ensures sane default values).
+      Let's take a look at its attributes in brief:
+    </p>
+    <pre>
+  class Context
+
+    #
+    # &lt;i&gt;FormatText::Effector object&lt;/i&gt;.  The _Effector_ object
+    # involved.  Read-only.
+    #
+    attr_accessor  :effectorObj
+
+    #
+    # &lt;i&gt;FTO object&lt;/i&gt;.  The _FTO_ object being processed.
+    # Read-only.
+    #
+    attr_accessor  :ftoObj
+
+    #
+    # _String_.  The string that matched the effector and triggered
+    # its processing.  Read-only.
+    #
+    attr_accessor  :sMatched
+
+    #
+    # _Array_.  Arguments remaining to be processed.  Usually
+    # read-only, but see the description of the _usedArgs_ attribute
+    # for exceptions.
+    #
+    attr_accessor  :usedArgs
+
+    #
+    # _Array_.  List of arguments already processed.  Usually
+    # read-only.  The effector function is responsible for using the
+    # values in this array to perform its task.
+    #
+    # The only time this should be considered read/write is when the
+    # effector is intended to modify the list of arguments being used
+    # to build the final string.  The _argList_ attribute should be
+    # modified in conjunction with _usedArgs_ to maintain continuity.
+    # By default, after the effector function returns, the caller (the
+    # &lt;i&gt;FTO#format()&lt;/i&gt; method) will take the element from the front
+    # of the _argList_ array and push it onto the end of the
+    # _usedArgs_ array.
+    #
+    attr_accessor  :argList
+
+    #
+    # _Any_.  The &lt;i&gt;FTO#format()&lt;/i&gt; sets this to the last argument
+    # that was actually used.
+    #
+    attr_accessor :lastArgUsed
+
+    #
+    # _Boolean_.  The effector function sets this to +true+ to inhibit
+    # the &lt;i&gt;FTO#format()&lt;/i&gt; method from modifying the argument list
+    # after the function returns.  See the descriptions under the
+    # _argList_ and _usedArgs_ attributes.
+    #
+    attr_accessor  :reuseArg
+
+  end                           # class Context
+    </pre>
+    <p>
+    </p>
+    <dl class="hashkeys">
+      <dt>:effectorObj</dt>
+      <dd>
+          <i>FormatText::Effector object</i>.  The <i>Effector</i> object
+          involved.  Read-only.
+      </dd>
+      <dt>:ftoObj</dt>
+      <dd>
+          <i>FTO object</i>.  The <i>FTO</i> object being processed.
+          Read-only.
+      </dd>
+      <dt>:sMatched</dt>
+      <dd>
+          <i>String</i>.  The string that matched the effector and triggered
+          its processing.  Read-only.
+      </dd>
+      <dt>:usedArgs</dt>
+      <dd>
+          <i>Array</i>.  Arguments remaining to be processed.  Usually
+          read-only, but see the description of the <i>usedArgs</i> attribute
+          for exceptions.
+      </dd>
+      <dt>:argList</dt>
+      <dd>
+          <i>Array</i>.  List of arguments already processed.  Usually
+          read-only.  The effector function is responsible for using the
+          values in this array to perform its task.
+        <p/>
+          The only time this should be considered read/write is when the
+          effector is intended to modify the list of arguments being used
+          to build the final string.  The <i>argList</i> attribute should be
+          modified in conjunction with <i>usedArgs</i> to maintain continuity.
+          By default, after the effector function returns, the caller (the
+          <i>FTO.format()</i> method) will take the element from the front
+          of the <i>argList</i> array and push it onto the end of the
+          <i>usedArgs</i> array.
+      </dd>
+      <dt>:lastArgUsed</dt>
+      <dd>
+          <i>Any</i>.  The <i>FTO.format()</i> method sets this to the
+          last argument that was actually used.
+      </dd>
+      <dt>:reuseArg</dt>
+      <dd>
+          <i>Boolean</i>.  The effector function sets this to
+          <tt>true</tt> to inhibit
+          the <i>FTO.format()</i> method from modifying the argument list
+          after the function returns.  See the descriptions under the
+          <i>argList</i> and <i>usedArgs</i> attributes.
+      </dd>
+    </dl>
+
+  </body>
+</html>

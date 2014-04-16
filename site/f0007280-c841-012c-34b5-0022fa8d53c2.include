@@ -1,0 +1,15 @@
+<!-- Effector: !AS
+     UUID: f0007280-c841-012c-34b5-0022fa8d53c2
+     Category: String insertion
+     Name: String AS
+-->
+    <p>
+      Inserts a <i>String</i> argument.  If the value is shorter than
+      the field width, the result will be left-justified and space-filled.
+      If it is longer, it will be truncated on the right.
+    </p>
+    <pre>
+      FTO.new('!AS',   'abcdefg').format =&gt; "abcdefg"
+      FTO.new('!10AS', 'abcdefg').format =&gt; "abcdefg&nbsp;&nbsp;&nbsp;"
+      FTO.new('!4AS',  'abcdefg').format =&gt; "abcd"
+    </pre>

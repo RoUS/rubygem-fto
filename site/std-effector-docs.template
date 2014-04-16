@@ -1,0 +1,195 @@
+    <h3 name="E005001">String insertion</h3>
+<!-- include E005001.include -->
+
+    <h4 name="f0007280-c841-012c-34b5-0022fa8d53c2">String AS</h4>
+    <h5 class="code">![<i>w</i>]AS</h5>
+<!-- include f0007280-c841-012c-34b5-0022fa8d53c2.include -->
+
+    <h4 name="f00035b0-c841-012c-34b5-0022fa8d53c2">String AN</h4>
+    <h5 class="code">![<i>w</i>]AN</h5>
+<!-- include f00035b0-c841-012c-34b5-0022fa8d53c2.include -->
+
+    <h4 name="f0003840-c841-012c-34b5-0022fa8d53c2">String AD</h4>
+    <h5 class="code">![<i>w</i>]AD</h5>
+<!-- include f0003840-c841-012c-34b5-0022fa8d53c2.include -->
+
+    <h4 name="f00039d0-c841-012c-34b5-0022fa8d53c2">String AF</h4>
+    <h5 class="code">![<i>w</i>]AF</h5>
+<!-- include f00039d0-c841-012c-34b5-0022fa8d53c2.include -->
+
+
+    <h3 name="E005002">Numeric insertion</h3>
+<!-- include E005002.include -->
+
+    <h4 name="f0003b50-c841-012c-34b5-0022fa8d53c2">Integer arbitrary radix</h4>
+    <h5 class="code">![<i>w</i>]@<i>radix</i>R<br/>![<i>w</i>]@<i>radix</i>r<br/>![<i>w</i>]@#R<br/>![<i>w</i>]@#r<br/></h5>
+<!-- include f0003b50-c841-012c-34b5-0022fa8d53c2.include -->
+
+    <h4 name="f0003cc0-c841-012c-34b5-0022fa8d53c2">Floating-point</h4>
+    <h5 class="code">![<i>w</i>]F</h5>
+<!-- include f0003cc0-c841-012c-34b5-0022fa8d53c2.include -->
+
+    <h4 name="f0003e30-c841-012c-34b5-0022fa8d53c2">Byte: unsigned</h4>
+    <h5 class="code">![<i>w</i>]UB</h5>
+<!-- include f0003e30-c841-012c-34b5-0022fa8d53c2.include -->
+
+    <h4 name="f0004040-c841-012c-34b5-0022fa8d53c2">Byte: signed</h4>
+    <h5 class="code">![<i>w</i>]SB</h5>
+<!-- include f0004040-c841-012c-34b5-0022fa8d53c2.include -->
+
+    <h4 name="f00041b0-c841-012c-34b5-0022fa8d53c2">Byte: unsigned, zero-filled</h4>
+    <h5 class="code">![<i>w</i>]ZB</h5>
+<!-- include f00041b0-c841-012c-34b5-0022fa8d53c2.include -->
+
+    <h4 name="f0004330-c841-012c-34b5-0022fa8d53c2">Byte: octal</h4>
+    <h5 class="code">![<i>w</i>]OB</h5>
+<!-- include f0004330-c841-012c-34b5-0022fa8d53c2.include -->
+
+    <h4 name="f00044a0-c841-012c-34b5-0022fa8d53c2">Byte: hex</h4>
+    <h5 class="code">![<i>w</i>]XB</h5>
+<!-- include f00044a0-c841-012c-34b5-0022fa8d53c2.include -->
+
+    <h4 name="f0004620-c841-012c-34b5-0022fa8d53c2">Word: unsigned</h4>
+    <h5 class="code">![<i>w</i>]UW</h5>
+<!-- include f0004620-c841-012c-34b5-0022fa8d53c2.include -->
+
+    <h4 name="f0004790-c841-012c-34b5-0022fa8d53c2">Word: signed</h4>
+    <h5 class="code">![<i>w</i>]SW</h5>
+<!-- include f0004790-c841-012c-34b5-0022fa8d53c2.include -->
+
+    <h4 name="f0004910-c841-012c-34b5-0022fa8d53c2">Word: unsigned, zero-filled</h4>
+    <h5 class="code">![<i>w</i>]ZW</h5>
+<!-- include f0004910-c841-012c-34b5-0022fa8d53c2.include -->
+
+    <h4 name="f0004ac0-c841-012c-34b5-0022fa8d53c2">Word: octal</h4>
+    <h5 class="code">![<i>w</i>]OW</h5>
+<!-- include f0004ac0-c841-012c-34b5-0022fa8d53c2.include -->
+
+    <h4 name="f0004c40-c841-012c-34b5-0022fa8d53c2">Word: hex</h4>
+    <h5 class="code">![<i>w</i>]XW</h5>
+<!-- include f0004c40-c841-012c-34b5-0022fa8d53c2.include -->
+
+    <h4 name="f0004db0-c841-012c-34b5-0022fa8d53c2">Long: unsigned</h4>
+    <h5 class="code">![<i>w</i>]UL</h5>
+<!-- include f0004db0-c841-012c-34b5-0022fa8d53c2.include -->
+
+    <h4 name="f0004f20-c841-012c-34b5-0022fa8d53c2">Long: signed</h4>
+    <h5 class="code">![<i>w</i>]SL</h5>
+<!-- include f0004f20-c841-012c-34b5-0022fa8d53c2.include -->
+
+    <h4 name="f00050a0-c841-012c-34b5-0022fa8d53c2">Long: unsigned, zero-filled</h4>
+    <h5 class="code">![<i>w</i>]ZL</h5>
+<!-- include f00050a0-c841-012c-34b5-0022fa8d53c2.include -->
+
+    <h4 name="f0005210-c841-012c-34b5-0022fa8d53c2">Long: octal</h4>
+    <h5 class="code">![<i>w</i>]OL</h5>
+<!-- include f0005210-c841-012c-34b5-0022fa8d53c2.include -->
+
+    <h4 name="f0005380-c841-012c-34b5-0022fa8d53c2">Long: hex</h4>
+    <h5 class="code">![<i>w</i>]XL</h5>
+<!-- include f0005380-c841-012c-34b5-0022fa8d53c2.include -->
+
+    <h4 name="f00054f0-c841-012c-34b5-0022fa8d53c2">Quadword: unsigned</h4>
+    <h5 class="code">![<i>w</i>]UQ</h5>
+<!-- include f00054f0-c841-012c-34b5-0022fa8d53c2.include -->
+
+    <h4 name="f0005670-c841-012c-34b5-0022fa8d53c2">Quadword: signed</h4>
+    <h5 class="code">![<i>w</i>]SQ</h5>
+<!-- include f0005670-c841-012c-34b5-0022fa8d53c2.include -->
+
+    <h4 name="f00057e0-c841-012c-34b5-0022fa8d53c2">Quadword: unsigned, zero-filled</h4>
+    <h5 class="code">![<i>w</i>]ZQ</h5>
+<!-- include f00057e0-c841-012c-34b5-0022fa8d53c2.include -->
+
+    <h4 name="f0005960-c841-012c-34b5-0022fa8d53c2">Quadword: octal</h4>
+    <h5 class="code">![<i>w</i>]OQ</h5>
+<!-- include f0005960-c841-012c-34b5-0022fa8d53c2.include -->
+
+    <h4 name="f0005ac0-c841-012c-34b5-0022fa8d53c2">Quadword: hex</h4>
+    <h5 class="code">![<i>w</i>]XQ</h5>
+<!-- include f0005ac0-c841-012c-34b5-0022fa8d53c2.include -->
+
+
+    <h3 name="E005003">Special-character insertion</h3>
+<!-- include E005003.include -->
+
+    <h4 name="f0005c40-c841-012c-34b5-0022fa8d53c2">TAB</h4>
+    <h5 class="code">!_</h5>
+<!-- include f0005c40-c841-012c-34b5-0022fa8d53c2.include -->
+
+    <h4 name="f0005db0-c841-012c-34b5-0022fa8d53c2">Formfeed</h4>
+    <h5 class="code">!^</h5>
+<!-- include f0005db0-c841-012c-34b5-0022fa8d53c2.include -->
+
+    <h4 name="f0005f20-c841-012c-34b5-0022fa8d53c2">Bang</h4>
+    <h5 class="code">!!</h5>
+<!-- include f0005f20-c841-012c-34b5-0022fa8d53c2.include -->
+
+    <h4 name="f0006090-c841-012c-34b5-0022fa8d53c2">CR</h4>
+    <h5 class="code">!=</h5>
+<!-- include f0006090-c841-012c-34b5-0022fa8d53c2.include -->
+
+    <h4 name="f0006200-c841-012c-34b5-0022fa8d53c2">LF</h4>
+    <h5 class="code">!,</h5>
+<!-- include f0006200-c841-012c-34b5-0022fa8d53c2.include -->
+
+    <h4 name="f0006380-c841-012c-34b5-0022fa8d53c2">CRLF</h4>
+    <h5 class="code">!/</h5>
+<!-- include f0006380-c841-012c-34b5-0022fa8d53c2.include -->
+
+
+    <h3 name="E005004">Field-width control</h3>
+<!-- include E005004.include -->
+
+    <h4 name="f00064f0-c841-012c-34b5-0022fa8d53c2">ArgWidth</h4>
+    <h5 class="code">!#<i>effector</i></h5>
+<!-- include f00064f0-c841-012c-34b5-0022fa8d53c2.include -->
+
+    <h4 name="f00066f0-c841-012c-34b5-0022fa8d53c2">Fixed Window</h4>
+    <h5 class="code">!<i>w</i>&lt; ... !&gt;</h5>
+<!-- include f00066f0-c841-012c-34b5-0022fa8d53c2.include -->
+
+
+    <h3 name="E005005">Argument list modification</h3>
+<!-- include E005005.include -->
+
+    <h4 name="f0006870-c841-012c-34b5-0022fa8d53c2">Reuse</h4>
+    <h5 class="code">!-</h5>
+<!-- include f0006870-c841-012c-34b5-0022fa8d53c2.include -->
+
+    <h4 name="f00069e0-c841-012c-34b5-0022fa8d53c2">Skip</h4>
+    <h5 class="code">!+</h5>
+<!-- include f00069e0-c841-012c-34b5-0022fa8d53c2.include -->
+
+
+    <h3 name="E005006">Pluralisation</h3>
+<!-- include E005006.include -->
+
+    <h4 name="f0006b50-c841-012c-34b5-0022fa8d53c2">Pluralise-English</h4>
+    <h5 class="code">!%S</h5>
+<!-- include f0006b50-c841-012c-34b5-0022fa8d53c2.include -->
+
+    <h4 name="f0006cb0-c841-012c-34b5-0022fa8d53c2">is/are-English</h4>
+    <h5 class="code">!%is</h5>
+<!-- include f0006cb0-c841-012c-34b5-0022fa8d53c2.include -->
+
+    <h4 name="f0006e20-c841-012c-34b5-0022fa8d53c2">IS/ARE-English</h4>
+    <h5 class="code">!%IS</h5>
+<!-- include f0006e20-c841-012c-34b5-0022fa8d53c2.include -->
+
+
+    <h3 name="E005007">Date/time insertion</h3>
+<!-- include E005007.include -->
+
+    <h4 name="f0006fa0-c841-012c-34b5-0022fa8d53c2">Date/Time</h4>
+    <h5 class="code">![<i>w</i>]%T( ... !)</h5>
+<!-- include f0006fa0-c841-012c-34b5-0022fa8d53c2.include -->
+
+
+    <h3 name="E005008">Miscellaneous</h3>
+<!-- include E005008.include -->
+
+    <h4 name="f0007110-c841-012c-34b5-0022fa8d53c2">RepeatingChar</h4>
+    <h5 class="code">!<i>n</i>*<i>c</i></h5>
+<!-- include f0007110-c841-012c-34b5-0022fa8d53c2.include -->
+

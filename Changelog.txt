@@ -1,0 +1,30 @@
+-*- mode: change-log; mode: auto-fill; -*-
+
+1.1.0
+	* Added !@R and !@r arbitrary-radix effectors.
+	* Moved some of the lambda functions into the Context and Effector
+	  classes where they more properly belong.
+	* Gave standard effectors UUID values for their IDs, for
+	  documentation linking and univerality.  Created empty XHTML
+	  files for the categories and effectors, for inclusion in the
+	  Effectors.html file.
+	* Touched up the site CSS a little.  (Still pretty bogus.)
+
+1.0.0 2009-12-07
+	* Added !%T( ... !) effector, which does both date and time and is
+	  significantly different from OpenVMS' meaning for !%T and !%D.
+	  Oh, well.
+	* Added FTO.clearEffectorList() for easy replacement of the
+	  standard effectors with a custom set.
+	* Made effector processing safe (i.e., the output of one effector
+	  can't affect the format string seen by subsequent effectors).
+	* Fix a problem with string field width calculation when none was
+	  specified.
+	* Freeze the class variables when they're rebuilt.
+
+0.1.0 2009-12-03 Initial gem released
+--------------------------
+	Not a complete implementation of OpenVMS' SYS$FAO system service
+	syntax, but probably about 95% of the useful stuff.  (Much of
+	SYS$FAO's functionality is specific to the OpenVMS operating
+	system.)  The extensibility of FTO is a completely new feature.

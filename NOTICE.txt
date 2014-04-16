@@ -1,0 +1,5 @@
+Formatted Textual Output package
+Copyright © 2009 Ken Coar
+
+This file MUST contain attributions for any third-party
+inclusions or contributions.

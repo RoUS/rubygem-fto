@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <link rel="stylesheet" href="css/screen.css" type="text/css" media="screen" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Formatted Textual Output: Standard Effectors</title>
+  </head>
+  <body>
+    <h1>Formatted Textual Output V0.1.1</h1>
+
+    <h2>Standard Effectors</h2>
+    <p>
+      This page describes the format effectors that are included as part of the
+      <a href="http://fto.rubyforge.org/"><i>Formatted Textual Output</i></a>
+      gem package.  They're based upon the SYS$FAO syntax found on the
+      OpenVMS operating system, but aren't an exact duplication.  There
+      are some that are missing because they only make sense on OpenVMS,
+      and some extras that fill in where SYS$FAO had missing or outdated
+      functionality.
+    </p>
+    <p>
+      All of the standard effectors begin with an exclamation mark
+      or 'bang' (<tt style="font-size: 130%;">!</tt>).  Most (but not all) of
+      them support a field width, which is a decimal number immediately
+      following the bang.  If a field width is specified, the inserted value
+      will be <i>exactly</i> that wide.  Whether it is left-
+      or right-justified, space-filled or otherwise, is effector-specific.
+      As an example, the effector "<tt>!AS</tt>" means "insert a string."
+      The actual text inserted will be as long or as short as the argument.
+      However, the effector "<tt>!15AS</tt>" specifies an exact field width
+      of 15 columns, meaning that a longer input will be truncated and a
+      shorter one filled.
+    </p>
+    <p>
+      The effectors are grouped into several different categories, each
+      of which is described in the following sections.
+    </p>
+    <p class="note">
+      Programming note:
+      <br/>
+      As of version 1.1.0, each of the standard effectors supplied
+      with the package has an unique identifier that is the same
+      across all installations.  For instance, the <tt>id</tt> value for
+      the "<tt>!AS</tt>" effector will be the same on all systems,
+      and different from that of the "<tt>!UB</tt>" effector.
+    </p>
+
+<!-- include std-effector-docs.include -->
+
+  </body>
+</html>

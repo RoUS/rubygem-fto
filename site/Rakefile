@@ -1,0 +1,36 @@
+$LOAD_PATH.unshift('../lib/')
+
+task  :default => [ :build_index_html, :build_Effectors_html ] 
+
+desc 'Build the index file'
+task :build_index_html => [ :build_includes, :assemble_index ]
+
+desc 'Build the Effectors.html file'
+task :build_Effectors_html => [ :build_includes, :assemble_Effectors ]
+
+desc 'Build the tip table and the effector docco include'
+task :build_includes do
+     #
+     # Produces 'tiptable.include' and std-effector-docs.intermediate'
+     #
+     ruby '-I ../lib/ extract-doc.rb'
+end
+
+desc 'Create the index.html file'
+task :assemble_index do
+     #
+     # Inserts 'tiptable.include' into 'index.master'
+     #
+     ruby 'assemble.rb -I index.master -O index.html'
+end
+
+desc 'Create the Effectors.html file'
+task :assemble_Effectors do
+     #
+     # Create the include file used by Effectors.master from the
+     # intermediate file produced by extract-doc.rb
+     #
+     ruby 'assemble.rb -I std-effector-docs.intermediate -O std-effector-docs.include'
+     ruby 'assemble.rb -I Effectors.master -O Effectors.html'
+end
+

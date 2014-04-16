@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <link rel="stylesheet" href="css/screen.css" type="text/css" media="screen" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Formatted Textual Output V0.1.1</title>
+  </head>
+  <body>
+    <h1>Formatted Textual Output V0.1.1</h1>
+
+    <h2>Downloading and Installation</h2>
+    <p>
+    </p>
+
+    <h2>API</h2>
+    <p>
+    </p>
+
+    <h2>Background</h2>
+    <p>
+      The OpenVMS operating system included string formatting
+      functionality from the outset, actually built into the OS
+      kernel.  Called <b>SYS$FAO</b>, it is an integral part of how
+      OpenVMS interfaces with its users.  <b>FAO</b> stands
+      for <b>F</b>ormatted <b>A</b>SCII <b>O</b>utput, which was a
+      reasonable name in the late 1970s when the operating system
+      first became available.
+    </p>
+
+    <h2>Features</h2>
+    <p>
+    </p>
+
+    <h3>Extensibility</h3>
+    <p>
+      Write your own format effectors to augment the standard set &mdash;
+      or replace them.
+    </p>
+
+    <h2>Quick Reference</h2>
+    <div class="blcentre">
+<!-- include tiptable.include -->
+    </div>
+    <h2 name="links">Links</h2>
+    <ul>
+      <li>
+        <a href="http://rubyforge.org/projects/fto/">RubyForge project page</a>
+      </li>
+      <li>
+        <a href="rdoc/">FTO Rdoc pages</a>
+      </li>
+      <li>
+        <a href="WritingGuide">Guide to Writing Your Own Effectors</a>
+      </li>
+      <li>
+        <a href="">SYS$FAO online documentation</a>
+      </li>
+      <li>
+        <a href=""><tt>printf(3)</tt> <i>man</i> page</a>
+      </li>
+    </ul>
+  </body>
+</html>

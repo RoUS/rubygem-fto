@@ -1,0 +1,4 @@
+=== 0.0.0 2009-12-01
+
+* 0 major enhancements:
+  * Pre-release

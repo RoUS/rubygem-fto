@@ -1,0 +1,431 @@
+    <h3 id="E005001">String insertion</h3>
+    <p>
+      Simply put, the format effectors in this category cause
+      text from the argument to be inserted in the output string.
+      All of them accept the standard field-width syntax.
+    </p>
+
+    <h4 id="f0007280-c841-012c-34b5-0022fa8d53c2">String AS</h4>
+    <h5 class="code">![<i>w</i>]AS</h5>
+<!-- Effector: !AS
+     UUID: f0007280-c841-012c-34b5-0022fa8d53c2
+     Category: String insertion
+     Name: String AS
+-->
+    <p>
+      Inserts a <i>String</i> argument.  If the value is shorter than
+      the field width, the result will be left-justified and space-filled.
+      If it is longer, it will be truncated on the right.
+    </p>
+    <pre>
+      FTO.new('!AS',   'abcdefg').format =&gt; "abcdefg"
+      FTO.new('!10AS', 'abcdefg').format =&gt; "abcdefg&nbsp;&nbsp;&nbsp;"
+      FTO.new('!4AS',  'abcdefg').format =&gt; "abcd"
+    </pre>
+
+    <h4 id="f00035b0-c841-012c-34b5-0022fa8d53c2">String AN</h4>
+    <h5 class="code">![<i>w</i>]AN</h5>
+<!-- Effector: !AN
+     UUID: f00035b0-c841-012c-34b5-0022fa8d53c2
+     Category: String insertion
+     Name: String AN
+-->
+
+    <h4 id="f0003840-c841-012c-34b5-0022fa8d53c2">String AD</h4>
+    <h5 class="code">![<i>w</i>]AD</h5>
+<!-- Effector: !AD
+     UUID: f0003840-c841-012c-34b5-0022fa8d53c2
+     Category: String insertion
+     Name: String AD
+-->
+
+    <h4 id="f00039d0-c841-012c-34b5-0022fa8d53c2">String AF</h4>
+    <h5 class="code">![<i>w</i>]AF</h5>
+<!-- Effector: !AF
+     UUID: f00039d0-c841-012c-34b5-0022fa8d53c2
+     Category: String insertion
+     Name: String AF
+-->
+
+
+    <h3 id="E005002">Numeric insertion</h3>
+
+    <h4 id="f0003b50-c841-012c-34b5-0022fa8d53c2">Integer arbitrary radix</h4>
+    <h5 class="code">![<i>w</i>]@<i>radix</i>R<br/>![<i>w</i>]@<i>radix</i>r<br/>![<i>w</i>]@#R<br/>![<i>w</i>]@#r<br/></h5>
+<!-- Effector: !@R
+     UUID: f0003b50-c841-012c-34b5-0022fa8d53c2
+     Category: Numeric insertion
+     Name: Integer arbitrary radix
+-->
+    <p>
+      Inserts a <i>Fixnum</i> argument, represented in the specified
+      radix.  The radix may be in the range of 2 through 36 inclusive;
+      values outside that range will result in an exception being raised.
+    </p>
+    <p>
+      The radix may be a simple integer, an integer with a leading zero, or
+      an octothorpe character '<tt>#</tt>'.  The effects are described in
+      the table below.
+    </p>
+    <p>
+      For radices higher than 10, the letters 'a' through 'z' will be
+      added to the set of digits as appropriate.  If the '<tt>R</tt>'
+      suffix is upper-case, such letters will be likewise uppercase.
+      If the effector ends with a lowercase '<tt>r</tt>', the letters
+      will also be lowercase.
+    </p>
+    <table>
+      <caption>Effects of Radix Syntax on Field Filling</caption>
+      <tr>
+        <th>Syntax</th>
+        <th>Result is Shorter than Field Width</th>
+        <th>Result is Longer than Field Width</th>
+      </tr>
+      <tr>
+        <td class="code">@<i>nn</i>R</td>
+        <td>Result is left-justified and space-filled.</td>
+        <td>Result is left-justified and truncated on the right.</td>
+      </tr>
+      <tr>
+        <td class="code">@<i>0nn</i>R</td>
+        <td>Result is right-justified and zero-filled on the left.</td>
+        <td>Result is left-justified and truncated on the right.</td>
+      </tr>
+      <tr>
+        <td class="code">@#R</td>
+        <td colspan="2">
+          As for <tt>@<i>nn</i>R</tt> above, except that the radix value
+          is taken from the argument list (before the value to be formatted).
+        </td>
+      </tr>
+      <tr>
+        <td class="code">@0#R</td>
+        <td colspan="2">
+          As for <tt>@<i>0nn</i>R</tt> above, except that the radix value
+          is taken from the argument list (before the value to be formatted).
+        </td>
+      </tr>
+    </table>
+    <p>
+      If the value is shorter than
+      the field width, the result will be left-justified and space-filled.
+      If it is longer, it will be truncated on the right.
+    </p>
+    <pre>
+      FTO.new('!@2R',    141).format =&gt; "10001101"
+      FTO.new('!@3R',    141).format =&gt; "12020"
+      FTO.new('!@10R',   141).format =&gt; "141"
+      FTO.new('!@16R',   141).format =&gt; "8D"
+      FTO.new('!@36R',   141).format =&gt; "3X"
+      FTO.new('!@36r',   141).format =&gt; "3x"
+      FTO.new('!4@36R',  141).format =&gt; "3X&nbsp;&nbsp;"
+      FTO.new('!4@036R', 141).format =&gt; "003X"
+      FTO.new('!4@2R',   141).format =&gt; "1000"
+    </pre>
+
+    <h4 id="f0003cc0-c841-012c-34b5-0022fa8d53c2">Floating-point</h4>
+    <h5 class="code">![<i>w</i>]F</h5>
+<!-- Effector: !F
+     UUID: f0003cc0-c841-012c-34b5-0022fa8d53c2
+     Category: Numeric insertion
+     Name: Floating point
+-->
+
+    <h4 id="f0003e30-c841-012c-34b5-0022fa8d53c2">Byte: unsigned</h4>
+    <h5 class="code">![<i>w</i>]UB</h5>
+<!-- Effector: !UB
+     UUID: f0003e30-c841-012c-34b5-0022fa8d53c2
+     Category: Numeric insertion
+     Name: Byte: unsigned
+-->
+
+    <h4 id="f0004040-c841-012c-34b5-0022fa8d53c2">Byte: signed</h4>
+    <h5 class="code">![<i>w</i>]SB</h5>
+<!-- Effector: !SB
+     UUID: f0004040-c841-012c-34b5-0022fa8d53c2
+     Category: Numeric insertion
+     Name: Byte: signed
+-->
+
+    <h4 id="f00041b0-c841-012c-34b5-0022fa8d53c2">Byte: unsigned, zero-filled</h4>
+    <h5 class="code">![<i>w</i>]ZB</h5>
+<!-- Effector: !ZB
+     UUID: f00041b0-c841-012c-34b5-0022fa8d53c2
+     Category: Numeric insertion
+     Name: Byte: unsigned, zero-filled
+-->
+
+    <h4 id="f0004330-c841-012c-34b5-0022fa8d53c2">Byte: octal</h4>
+    <h5 class="code">![<i>w</i>]OB</h5>
+<!-- Effector: !OB
+     UUID: f0004330-c841-012c-34b5-0022fa8d53c2
+     Category: Numeric insertion
+     Name: Byte: octal
+-->
+
+    <h4 id="f00044a0-c841-012c-34b5-0022fa8d53c2">Byte: hex</h4>
+    <h5 class="code">![<i>w</i>]XB</h5>
+<!-- Effector: !XB
+     UUID: f00044a0-c841-012c-34b5-0022fa8d53c2
+     Category: Numeric insertion
+     Name: Byte: hex
+-->
+
+    <h4 id="f0004620-c841-012c-34b5-0022fa8d53c2">Word: unsigned</h4>
+    <h5 class="code">![<i>w</i>]UW</h5>
+<!-- Effector: !UW
+     UUID: f0004620-c841-012c-34b5-0022fa8d53c2
+     Category: Numeric insertion
+     Name: Word: unsigned
+-->
+
+    <h4 id="f0004790-c841-012c-34b5-0022fa8d53c2">Word: signed</h4>
+    <h5 class="code">![<i>w</i>]SW</h5>
+<!-- Effector: !SW
+     UUID: f0004790-c841-012c-34b5-0022fa8d53c2
+     Category: Numeric insertion
+     Name: Word: signed
+-->
+
+    <h4 id="f0004910-c841-012c-34b5-0022fa8d53c2">Word: unsigned, zero-filled</h4>
+    <h5 class="code">![<i>w</i>]ZW</h5>
+<!-- Effector: !ZW
+     UUID: f0004910-c841-012c-34b5-0022fa8d53c2
+     Category: Numeric insertion
+     Name: Word: unsigned, zero-filled
+-->
+
+    <h4 id="f0004ac0-c841-012c-34b5-0022fa8d53c2">Word: octal</h4>
+    <h5 class="code">![<i>w</i>]OW</h5>
+<!-- Effector: !OW
+     UUID: f0004ac0-c841-012c-34b5-0022fa8d53c2
+     Category: Numeric insertion
+     Name: Word: octal
+-->
+
+    <h4 id="f0004c40-c841-012c-34b5-0022fa8d53c2">Word: hex</h4>
+    <h5 class="code">![<i>w</i>]XW</h5>
+<!-- Effector: !XW
+     UUID: f0004c40-c841-012c-34b5-0022fa8d53c2
+     Category: Numeric insertion
+     Name: Word: hex
+-->
+
+    <h4 id="f0004db0-c841-012c-34b5-0022fa8d53c2">Long: unsigned</h4>
+    <h5 class="code">![<i>w</i>]UL</h5>
+<!-- Effector: !UL
+     UUID: f0004db0-c841-012c-34b5-0022fa8d53c2
+     Category: Numeric insertion
+     Name: Long: unsigned
+-->
+
+    <h4 id="f0004f20-c841-012c-34b5-0022fa8d53c2">Long: signed</h4>
+    <h5 class="code">![<i>w</i>]SL</h5>
+<!-- Effector: !SL
+     UUID: f0004f20-c841-012c-34b5-0022fa8d53c2
+     Category: Numeric insertion
+     Name: Long: signed
+-->
+
+    <h4 id="f00050a0-c841-012c-34b5-0022fa8d53c2">Long: unsigned, zero-filled</h4>
+    <h5 class="code">![<i>w</i>]ZL</h5>
+<!-- Effector: !ZL
+     UUID: f00050a0-c841-012c-34b5-0022fa8d53c2
+     Category: Numeric insertion
+     Name: Long: unsigned, zero-filled
+-->
+
+    <h4 id="f0005210-c841-012c-34b5-0022fa8d53c2">Long: octal</h4>
+    <h5 class="code">![<i>w</i>]OL</h5>
+<!-- Effector: !OL
+     UUID: f0005210-c841-012c-34b5-0022fa8d53c2
+     Category: Numeric insertion
+     Name: Long: octal
+-->
+
+    <h4 id="f0005380-c841-012c-34b5-0022fa8d53c2">Long: hex</h4>
+    <h5 class="code">![<i>w</i>]XL</h5>
+<!-- Effector: !XL
+     UUID: f0005380-c841-012c-34b5-0022fa8d53c2
+     Category: Numeric insertion
+     Name: Long: hex
+-->
+
+    <h4 id="f00054f0-c841-012c-34b5-0022fa8d53c2">Quadword: unsigned</h4>
+    <h5 class="code">![<i>w</i>]UQ</h5>
+<!-- Effector: !UQ
+     UUID: f00054f0-c841-012c-34b5-0022fa8d53c2
+     Category: Numeric insertion
+     Name: Quadword: unsigned
+-->
+
+    <h4 id="f0005670-c841-012c-34b5-0022fa8d53c2">Quadword: signed</h4>
+    <h5 class="code">![<i>w</i>]SQ</h5>
+<!-- Effector: !SQ
+     UUID: f0005670-c841-012c-34b5-0022fa8d53c2
+     Category: Numeric insertion
+     Name: Quadword: signed
+-->
+
+    <h4 id="f00057e0-c841-012c-34b5-0022fa8d53c2">Quadword: unsigned, zero-filled</h4>
+    <h5 class="code">![<i>w</i>]ZQ</h5>
+<!-- Effector: !ZQ
+     UUID: f00057e0-c841-012c-34b5-0022fa8d53c2
+     Category: Numeric insertion
+     Name: Quadword: unsigned, zero-filled
+-->
+
+    <h4 id="f0005960-c841-012c-34b5-0022fa8d53c2">Quadword: octal</h4>
+    <h5 class="code">![<i>w</i>]OQ</h5>
+<!-- Effector: !OQ
+     UUID: f0005960-c841-012c-34b5-0022fa8d53c2
+     Category: Numeric insertion
+     Name: Quadword: octal
+-->
+
+    <h4 id="f0005ac0-c841-012c-34b5-0022fa8d53c2">Quadword: hex</h4>
+    <h5 class="code">![<i>w</i>]XQ</h5>
+<!-- Effector: !XQ
+     UUID: f0005ac0-c841-012c-34b5-0022fa8d53c2
+     Category: Numeric insertion
+     Name: Quadword: hex
+-->
+
+
+    <h3 id="E005003">Special-character insertion</h3>
+
+    <h4 id="f0005c40-c841-012c-34b5-0022fa8d53c2">TAB</h4>
+    <h5 class="code">!_</h5>
+<!-- Effector: !_
+     UUID: f0005c40-c841-012c-34b5-0022fa8d53c2
+     Category: Special-character insertion
+     Name: TAB
+-->
+
+    <h4 id="f0005db0-c841-012c-34b5-0022fa8d53c2">Formfeed</h4>
+    <h5 class="code">!^</h5>
+<!-- Effector: !^
+     UUID: f0005db0-c841-012c-34b5-0022fa8d53c2
+     Category: Special-character insertion
+     Name: Formfeed
+-->
+
+    <h4 id="f0005f20-c841-012c-34b5-0022fa8d53c2">Bang</h4>
+    <h5 class="code">!!</h5>
+<!-- Effector: !!
+     UUID: f0005f20-c841-012c-34b5-0022fa8d53c2
+     Category: Special-character insertion
+     Name: Bang
+-->
+
+    <h4 id="f0006090-c841-012c-34b5-0022fa8d53c2">CR</h4>
+    <h5 class="code">!=</h5>
+<!-- Effector: !=
+     UUID: f0006090-c841-012c-34b5-0022fa8d53c2
+     Category: Special-character insertion
+     Name: CR
+-->
+
+    <h4 id="f0006200-c841-012c-34b5-0022fa8d53c2">LF</h4>
+    <h5 class="code">!,</h5>
+<!-- Effector: !,
+     UUID: f0006200-c841-012c-34b5-0022fa8d53c2
+     Category: Special-character insertion
+     Name: LF
+-->
+
+    <h4 id="f0006380-c841-012c-34b5-0022fa8d53c2">CRLF</h4>
+    <h5 class="code">!/</h5>
+<!-- Effector: !/
+     UUID: f0006380-c841-012c-34b5-0022fa8d53c2
+     Category: Special-character insertion
+     Name: CRLF
+-->
+
+
+    <h3 id="E005004">Field-width control</h3>
+
+    <h4 id="f00064f0-c841-012c-34b5-0022fa8d53c2">ArgWidth</h4>
+    <h5 class="code">!#<i>effector</i></h5>
+<!-- Effector: !#
+     UUID: f00064f0-c841-012c-34b5-0022fa8d53c2
+     Category: Field-width control
+     Name: ArgWidth
+-->
+
+    <h4 id="f00066f0-c841-012c-34b5-0022fa8d53c2">Fixed Window</h4>
+    <h5 class="code">!<i>w</i>&lt; ... !&gt;</h5>
+<!-- Effector: !n&lt;&gt;
+     UUID: f00066f0-c841-012c-34b5-0022fa8d53c2
+     Category: Field-width control
+     Name: Fixed Window
+-->
+
+
+    <h3 id="E005005">Argument list modification</h3>
+
+    <h4 id="f0006870-c841-012c-34b5-0022fa8d53c2">Reuse</h4>
+    <h5 class="code">!-</h5>
+<!-- Effector: !-
+     UUID: f0006870-c841-012c-34b5-0022fa8d53c2
+     Category: Argument list modification
+     Name: Reuse
+-->
+
+    <h4 id="f00069e0-c841-012c-34b5-0022fa8d53c2">Skip</h4>
+    <h5 class="code">!+</h5>
+<!-- Effector: !+
+     UUID: f00069e0-c841-012c-34b5-0022fa8d53c2
+     Category: Argument list modification
+     Name: Skip
+-->
+
+
+    <h3 id="E005006">Pluralisation</h3>
+
+    <h4 id="f0006b50-c841-012c-34b5-0022fa8d53c2">Pluralise-English</h4>
+    <h5 class="code">!%S</h5>
+<!-- Effector: !%S
+     UUID: f0006b50-c841-012c-34b5-0022fa8d53c2
+     Category: Pluralisation
+     Name: Pluralise-English
+-->
+
+    <h4 id="f0006cb0-c841-012c-34b5-0022fa8d53c2">is/are-English</h4>
+    <h5 class="code">!%is</h5>
+<!-- Effector: !%is
+     UUID: f0006cb0-c841-012c-34b5-0022fa8d53c2
+     Category: Pluralisation
+     Name: is/are-English
+-->
+
+    <h4 id="f0006e20-c841-012c-34b5-0022fa8d53c2">IS/ARE-English</h4>
+    <h5 class="code">!%IS</h5>
+<!-- Effector: !%IS
+     UUID: f0006e20-c841-012c-34b5-0022fa8d53c2
+     Category: Pluralisation
+     Name: IS/ARE-English
+-->
+
+
+    <h3 id="E005007">Date/time insertion</h3>
+
+    <h4 id="f0006fa0-c841-012c-34b5-0022fa8d53c2">Date/Time</h4>
+    <h5 class="code">![<i>w</i>]%T( ... !)</h5>
+<!-- Effector: !%T
+     UUID: f0006fa0-c841-012c-34b5-0022fa8d53c2
+     Category: Date/time insertion
+     Name: Date/Time
+-->
+
+
+    <h3 id="E005008">Miscellaneous</h3>
+
+    <h4 id="f0007110-c841-012c-34b5-0022fa8d53c2">RepeatingChar</h4>
+    <h5 class="code">!<i>n</i>*<i>c</i></h5>
+<!-- Effector: !n*c
+     UUID: f0007110-c841-012c-34b5-0022fa8d53c2
+     Category: Miscellaneous
+     Name: RepeatingChar
+-->
+

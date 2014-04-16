@@ -1,0 +1,6 @@
+<!-- Category: String insertion -->
+    <p>
+      Simply put, the format effectors in this category cause
+      text from the argument to be inserted in the output string.
+      All of them accept the standard field-width syntax.
+    </p>

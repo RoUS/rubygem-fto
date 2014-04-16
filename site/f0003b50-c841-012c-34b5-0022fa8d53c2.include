@@ -1,0 +1,70 @@
+<!-- Effector: !@R
+     UUID: f0003b50-c841-012c-34b5-0022fa8d53c2
+     Category: Numeric insertion
+     Name: Integer arbitrary radix
+-->
+    <p>
+      Inserts a <i>Fixnum</i> argument, represented in the specified
+      radix.  The radix may be in the range of 2 through 36 inclusive;
+      values outside that range will result in an exception being raised.
+    </p>
+    <p>
+      The radix may be a simple integer, an integer with a leading zero, or
+      an octothorpe character '<tt>#</tt>'.  The effects are described in
+      the table below.
+    </p>
+    <p>
+      For radices higher than 10, the letters 'a' through 'z' will be
+      added to the set of digits as appropriate.  If the '<tt>R</tt>'
+      suffix is upper-case, such letters will be likewise uppercase.
+      If the effector ends with a lowercase '<tt>r</tt>', the letters
+      will also be lowercase.
+    </p>
+    <table>
+      <caption>Effects of Radix Syntax on Field Filling</caption>
+      <tr>
+        <th>Syntax</th>
+        <th>Result is Shorter than Field Width</th>
+        <th>Result is Longer than Field Width</th>
+      </tr>
+      <tr>
+        <td class="code">@<i>nn</i>R</td>
+        <td>Result is left-justified and space-filled.</td>
+        <td>Result is left-justified and truncated on the right.</td>
+      </tr>
+      <tr>
+        <td class="code">@<i>0nn</i>R</td>
+        <td>Result is right-justified and zero-filled on the left.</td>
+        <td>Result is left-justified and truncated on the right.</td>
+      </tr>
+      <tr>
+        <td class="code">@#R</td>
+        <td colspan="2">
+          As for <tt>@<i>nn</i>R</tt> above, except that the radix value
+          is taken from the argument list (before the value to be formatted).
+        </td>
+      </tr>
+      <tr>
+        <td class="code">@0#R</td>
+        <td colspan="2">
+          As for <tt>@<i>0nn</i>R</tt> above, except that the radix value
+          is taken from the argument list (before the value to be formatted).
+        </td>
+      </tr>
+    </table>
+    <p>
+      If the value is shorter than
+      the field width, the result will be left-justified and space-filled.
+      If it is longer, it will be truncated on the right.
+    </p>
+    <pre>
+      FTO.new('!@2R',    141).format =&gt; "10001101"
+      FTO.new('!@3R',    141).format =&gt; "12020"
+      FTO.new('!@10R',   141).format =&gt; "141"
+      FTO.new('!@16R',   141).format =&gt; "8D"
+      FTO.new('!@36R',   141).format =&gt; "3X"
+      FTO.new('!@36r',   141).format =&gt; "3x"
+      FTO.new('!4@36R',  141).format =&gt; "3X&nbsp;&nbsp;"
+      FTO.new('!4@036R', 141).format =&gt; "003X"
+      FTO.new('!4@2R',   141).format =&gt; "1000"
+    </pre>

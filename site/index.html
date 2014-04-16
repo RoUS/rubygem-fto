@@ -1,0 +1,383 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <link rel="stylesheet" href="css/screen.css" type="text/css" media="screen" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Formatted Textual Output V0.1.1</title>
+  </head>
+  <body>
+    <h1>Formatted Textual Output V0.1.1</h1>
+
+    <h2>Downloading and Installation</h2>
+    <p>
+    </p>
+
+    <h2>API</h2>
+    <p>
+    </p>
+
+    <h2>Background</h2>
+    <p>
+      The OpenVMS operating system included string formatting
+      functionality from the outset, actually built into the OS
+      kernel.  Called <b>SYS$FAO</b>, it is an integral part of how
+      OpenVMS interfaces with its users.  <b>FAO</b> stands
+      for <b>F</b>ormatted <b>A</b>SCII <b>O</b>utput, which was a
+      reasonable name in the late 1970s when the operating system
+      first became available.
+    </p>
+
+    <h2>Features</h2>
+    <p>
+    </p>
+
+    <h3>Extensibility</h3>
+    <p>
+      Write your own format effectors to augment the standard set &mdash;
+      or replace them.
+    </p>
+
+    <h2>Quick Reference</h2>
+    <div class="blcentre">
+      <table>
+        <tr>
+          <th class="category" colspan="4"><a href="Effectors.html#E005001">String insertion</a></th>
+        </tr>
+        <tr>
+          <th>Effector Syntax</th>
+          <th>Effector Name</th>
+          <th>Description</th>
+          <th>Default Width</th>
+        </tr>
+        <tr>
+          <td class="code"><a href="Effectors.html#f0007280-c841-012c-34b5-0022fa8d53c2">![<i>w</i>]AS</a></td>
+          <td>String AS</td>
+          <td>Insert a simple string.</td>
+          <td>As many columns as needed to represent the value.</td>
+        </tr>
+        <tr>
+          <td class="code"><a href="Effectors.html#f00035b0-c841-012c-34b5-0022fa8d53c2">![<i>w</i>]AN</a></td>
+          <td>String AN</td>
+          <td>Insert a simple string, replacing non-printing characters with ".".</td>
+          <td>As specified.</td>
+        </tr>
+        <tr>
+          <td class="code"><a href="Effectors.html#f0003840-c841-012c-34b5-0022fa8d53c2">![<i>w</i>]AD</a></td>
+          <td>String AD</td>
+          <td>Insert the first <i>n</i> characters of a string, drawing <i>n</i> from the argument list.</td>
+          <td>As specified.</td>
+        </tr>
+        <tr>
+          <td class="code"><a href="Effectors.html#f00039d0-c841-012c-34b5-0022fa8d53c2">![<i>w</i>]AF</a></td>
+          <td>String AF</td>
+          <td>Insert the first <i>n</i> characters of a string, drawing <i>n</i> from the argument list and replacing non-printing characters with ".".</td>
+          <td>As specified.</td>
+        </tr>
+        <tr>
+          <th class="category" colspan="4"><a href="Effectors.html#E005002">Numeric insertion</a></th>
+        </tr>
+        <tr>
+          <th>Effector Syntax</th>
+          <th>Effector Name</th>
+          <th>Description</th>
+          <th>Default Width</th>
+        </tr>
+        <tr>
+          <td class="code"><a href="Effectors.html#f0003b50-c841-012c-34b5-0022fa8d53c2">![<i>w</i>]@<i>radix</i>R<br/>![<i>w</i>]@<i>radix</i>r<br/>![<i>w</i>]@#R<br/>![<i>w</i>]@#r<br/></a></td>
+          <td>Integer arbitrary radix</td>
+          <td>Insert the value converted to the specified radix.  See the full documentation for features.</td>
+          <td>As many columns as needed to represent the value.</td>
+        </tr>
+        <tr>
+          <td class="code"><a href="Effectors.html#f0003cc0-c841-012c-34b5-0022fa8d53c2">![<i>w</i>]F</a></td>
+          <td>Floating-point</td>
+          <td>Insert the decimal representation of an unsigned 8-bit value, left space-filled to the field width.</td>
+          <td>As many columns as needed to represent the value.</td>
+        </tr>
+        <tr>
+          <td class="code"><a href="Effectors.html#f0003e30-c841-012c-34b5-0022fa8d53c2">![<i>w</i>]UB</a></td>
+          <td>Byte: unsigned</td>
+          <td>Insert the decimal representation of an unsigned 8-bit value, left space-filled to the field width.</td>
+          <td>As many columns as needed to represent the value.</td>
+        </tr>
+        <tr>
+          <td class="code"><a href="Effectors.html#f0004040-c841-012c-34b5-0022fa8d53c2">![<i>w</i>]SB</a></td>
+          <td>Byte: signed</td>
+          <td>Insert the decimal representation of a signed 8-bit value, left space-filled to the field width.</td>
+          <td>As many columns as needed to represent the value.</td>
+        </tr>
+        <tr>
+          <td class="code"><a href="Effectors.html#f00041b0-c841-012c-34b5-0022fa8d53c2">![<i>w</i>]ZB</a></td>
+          <td>Byte: unsigned, zero-filled</td>
+          <td>Insert the decimal representation of an unsigned 8-bit value, left zero-filled to the field width.</td>
+          <td>As many columns as needed to represent the value.</td>
+        </tr>
+        <tr>
+          <td class="code"><a href="Effectors.html#f0004330-c841-012c-34b5-0022fa8d53c2">![<i>w</i>]OB</a></td>
+          <td>Byte: octal</td>
+          <td>Insert the octal representation of an unsigned 8-bit value, left zero-filled to the field width (default 3).</td>
+          <td>3 columns.</td>
+        </tr>
+        <tr>
+          <td class="code"><a href="Effectors.html#f00044a0-c841-012c-34b5-0022fa8d53c2">![<i>w</i>]XB</a></td>
+          <td>Byte: hex</td>
+          <td>Insert the hexadecimal representation of an unsigned 8-bit value, left zero-filled to the field width (default 2).</td>
+          <td>2 columns.</td>
+        </tr>
+        <tr>
+          <td class="code"><a href="Effectors.html#f0004620-c841-012c-34b5-0022fa8d53c2">![<i>w</i>]UW</a></td>
+          <td>Word: unsigned</td>
+          <td>Insert the decimal representation of an unsigned 16-bit value, left space-filled to the field width.</td>
+          <td>As many columns as needed to represent the value.</td>
+        </tr>
+        <tr>
+          <td class="code"><a href="Effectors.html#f0004790-c841-012c-34b5-0022fa8d53c2">![<i>w</i>]SW</a></td>
+          <td>Word: signed</td>
+          <td>Insert the decimal representation of a signed 16-bit value, left space-filled to the field width.</td>
+          <td>As many columns as needed to represent the value.</td>
+        </tr>
+        <tr>
+          <td class="code"><a href="Effectors.html#f0004910-c841-012c-34b5-0022fa8d53c2">![<i>w</i>]ZW</a></td>
+          <td>Word: unsigned, zero-filled</td>
+          <td>Insert the decimal representation of an unsigned 16-bit value, left zero-filled to the field width.</td>
+          <td>As many columns as needed to represent the value.</td>
+        </tr>
+        <tr>
+          <td class="code"><a href="Effectors.html#f0004ac0-c841-012c-34b5-0022fa8d53c2">![<i>w</i>]OW</a></td>
+          <td>Word: octal</td>
+          <td>Insert the octal representation of an unsigned 16-bit value, left zero-filled to the field width (default 6).</td>
+          <td>6 columns.</td>
+        </tr>
+        <tr>
+          <td class="code"><a href="Effectors.html#f0004c40-c841-012c-34b5-0022fa8d53c2">![<i>w</i>]XW</a></td>
+          <td>Word: hex</td>
+          <td>Insert the hexadecimal representation of an unsigned 16-bit value, left zero-filled to the field width (default 4).</td>
+          <td>4 columns.</td>
+        </tr>
+        <tr>
+          <td class="code"><a href="Effectors.html#f0004db0-c841-012c-34b5-0022fa8d53c2">![<i>w</i>]UL</a></td>
+          <td>Long: unsigned</td>
+          <td>Insert the decimal representation of an unsigned 32-bit value, left space-filled to the field width.</td>
+          <td>As many columns as needed to represent the value.</td>
+        </tr>
+        <tr>
+          <td class="code"><a href="Effectors.html#f0004f20-c841-012c-34b5-0022fa8d53c2">![<i>w</i>]SL</a></td>
+          <td>Long: signed</td>
+          <td>Insert the decimal representation of a signed 32-bit value, left space-filled to the field width.</td>
+          <td>As many columns as needed to represent the value.</td>
+        </tr>
+        <tr>
+          <td class="code"><a href="Effectors.html#f00050a0-c841-012c-34b5-0022fa8d53c2">![<i>w</i>]ZL</a></td>
+          <td>Long: unsigned, zero-filled</td>
+          <td>Insert the decimal representation of an unsigned 32-bit value, left zero-filled to the field width.</td>
+          <td>As many columns as needed to represent the value.</td>
+        </tr>
+        <tr>
+          <td class="code"><a href="Effectors.html#f0005210-c841-012c-34b5-0022fa8d53c2">![<i>w</i>]OL</a></td>
+          <td>Long: octal</td>
+          <td>Insert the octal representation of an unsigned 32-bit value, left zero-filled to the field width (default 11).</td>
+          <td>11 columns.</td>
+        </tr>
+        <tr>
+          <td class="code"><a href="Effectors.html#f0005380-c841-012c-34b5-0022fa8d53c2">![<i>w</i>]XL</a></td>
+          <td>Long: hex</td>
+          <td>Insert the hexadecimal representation of an unsigned 32-bit value, left zero-filled to the field width (default 8).</td>
+          <td>8 columns.</td>
+        </tr>
+        <tr>
+          <td class="code"><a href="Effectors.html#f00054f0-c841-012c-34b5-0022fa8d53c2">![<i>w</i>]UQ</a></td>
+          <td>Quadword: unsigned</td>
+          <td>Insert the decimal representation of an unsigned 64-bit value, left space-filled to the field width.</td>
+          <td>As many columns as needed to represent the value.</td>
+        </tr>
+        <tr>
+          <td class="code"><a href="Effectors.html#f0005670-c841-012c-34b5-0022fa8d53c2">![<i>w</i>]SQ</a></td>
+          <td>Quadword: signed</td>
+          <td>Insert the decimal representation of a signed 64-bit value, left space-filled to the field width.</td>
+          <td>As many columns as needed to represent the value.</td>
+        </tr>
+        <tr>
+          <td class="code"><a href="Effectors.html#f00057e0-c841-012c-34b5-0022fa8d53c2">![<i>w</i>]ZQ</a></td>
+          <td>Quadword: unsigned, zero-filled</td>
+          <td>Insert the decimal representation of an unsigned 64-bit value, left zero-filled to the field width.</td>
+          <td>As many columns as needed to represent the value.</td>
+        </tr>
+        <tr>
+          <td class="code"><a href="Effectors.html#f0005960-c841-012c-34b5-0022fa8d53c2">![<i>w</i>]OQ</a></td>
+          <td>Quadword: octal</td>
+          <td>Insert the octal representation of an unsigned 64-bit value, left zero-filled to the field width (default 22).</td>
+          <td>22 columns.</td>
+        </tr>
+        <tr>
+          <td class="code"><a href="Effectors.html#f0005ac0-c841-012c-34b5-0022fa8d53c2">![<i>w</i>]XQ</a></td>
+          <td>Quadword: hex</td>
+          <td>Insert the hexadecimal representation of an unsigned 64-bit value, left zero-filled to the field width (default 16).</td>
+          <td>16 columns.</td>
+        </tr>
+        <tr>
+          <th class="category" colspan="4"><a href="Effectors.html#E005003">Special-character insertion</a></th>
+        </tr>
+        <tr>
+          <th>Effector Syntax</th>
+          <th>Effector Name</th>
+          <th>Description</th>
+          <th>Default Width</th>
+        </tr>
+        <tr>
+          <td class="code"><a href="Effectors.html#f0005c40-c841-012c-34b5-0022fa8d53c2">!_</a></td>
+          <td>TAB</td>
+          <td>Insert a TAB character.</td>
+          <td>Not applicable.</td>
+        </tr>
+        <tr>
+          <td class="code"><a href="Effectors.html#f0005db0-c841-012c-34b5-0022fa8d53c2">!^</a></td>
+          <td>Formfeed</td>
+          <td>Insert a form-feed control character.</td>
+          <td>Not applicable.</td>
+        </tr>
+        <tr>
+          <td class="code"><a href="Effectors.html#f0005f20-c841-012c-34b5-0022fa8d53c2">!!</a></td>
+          <td>Bang</td>
+          <td>Insert an exclamation mark (!) character.</td>
+          <td>Not applicable.</td>
+        </tr>
+        <tr>
+          <td class="code"><a href="Effectors.html#f0006090-c841-012c-34b5-0022fa8d53c2">!=</a></td>
+          <td>CR</td>
+          <td>Insert a carriage-return character.</td>
+          <td>Not applicable.</td>
+        </tr>
+        <tr>
+          <td class="code"><a href="Effectors.html#f0006200-c841-012c-34b5-0022fa8d53c2">!,</a></td>
+          <td>LF</td>
+          <td>Insert a line-feed control character.</td>
+          <td>Not applicable.</td>
+        </tr>
+        <tr>
+          <td class="code"><a href="Effectors.html#f0006380-c841-012c-34b5-0022fa8d53c2">!/</a></td>
+          <td>CRLF</td>
+          <td>Insert a carriage-return and a line-feed.</td>
+          <td>Not applicable.</td>
+        </tr>
+        <tr>
+          <th class="category" colspan="4"><a href="Effectors.html#E005004">Field-width control</a></th>
+        </tr>
+        <tr>
+          <th>Effector Syntax</th>
+          <th>Effector Name</th>
+          <th>Description</th>
+          <th>Default Width</th>
+        </tr>
+        <tr>
+          <td class="code"><a href="Effectors.html#f00064f0-c841-012c-34b5-0022fa8d53c2">!#<i>effector</i></a></td>
+          <td>ArgWidth</td>
+          <td>Specify a field width using an argument rather than a hard-coded value.</td>
+          <td>Not applicable.</td>
+        </tr>
+        <tr>
+          <td class="code"><a href="Effectors.html#f00066f0-c841-012c-34b5-0022fa8d53c2">!<i>w</i>&lt;&nbsp;...&nbsp;!&gt;</a></td>
+          <td>Fixed Window</td>
+          <td>Force a right-justified field width on the contents between the effector delimiters.</td>
+          <td>Not applicable.</td>
+        </tr>
+        <tr>
+          <th class="category" colspan="4"><a href="Effectors.html#E005005">Argument list modification</a></th>
+        </tr>
+        <tr>
+          <th>Effector Syntax</th>
+          <th>Effector Name</th>
+          <th>Description</th>
+          <th>Default Width</th>
+        </tr>
+        <tr>
+          <td class="code"><a href="Effectors.html#f0006870-c841-012c-34b5-0022fa8d53c2">!-</a></td>
+          <td>Reuse</td>
+          <td>Back the argument list up so the most recently used  argument gets re-used.</td>
+          <td>Not applicable.</td>
+        </tr>
+        <tr>
+          <td class="code"><a href="Effectors.html#f00069e0-c841-012c-34b5-0022fa8d53c2">!+</a></td>
+          <td>Skip</td>
+          <td>Skip over the next item in the argument list.</td>
+          <td>Not applicable.</td>
+        </tr>
+        <tr>
+          <th class="category" colspan="4"><a href="Effectors.html#E005006">Pluralisation</a></th>
+        </tr>
+        <tr>
+          <th>Effector Syntax</th>
+          <th>Effector Name</th>
+          <th>Description</th>
+          <th>Default Width</th>
+        </tr>
+        <tr>
+          <td class="code"><a href="Effectors.html#f0006b50-c841-012c-34b5-0022fa8d53c2">!%S</a></td>
+          <td>Pluralise-English</td>
+          <td>Add an "s" or "es" suffix if the last argument used was not 1.</td>
+          <td>1 or 2 columns</td>
+        </tr>
+        <tr>
+          <td class="code"><a href="Effectors.html#f0006cb0-c841-012c-34b5-0022fa8d53c2">!%is</a></td>
+          <td>is/are-English</td>
+          <td>Insert "is" or "are" depending on whether the last argument used was 1.</td>
+          <td>2 or 3 columns</td>
+        </tr>
+        <tr>
+          <td class="code"><a href="Effectors.html#f0006e20-c841-012c-34b5-0022fa8d53c2">!%IS</a></td>
+          <td>IS/ARE-English</td>
+          <td>Insert "IS" or "ARE" depending on whether the last argument used was 1.</td>
+          <td>2 or 3 columns</td>
+        </tr>
+        <tr>
+          <th class="category" colspan="4"><a href="Effectors.html#E005007">Date/time insertion</a></th>
+        </tr>
+        <tr>
+          <th>Effector Syntax</th>
+          <th>Effector Name</th>
+          <th>Description</th>
+          <th>Default Width</th>
+        </tr>
+        <tr>
+          <td class="code"><a href="Effectors.html#f0006fa0-c841-012c-34b5-0022fa8d53c2">![<i>w</i>]%T(&nbsp;...&nbsp;!)</a></td>
+          <td>Date/Time</td>
+          <td>Format a date/time value using <tt>strftime(3)</tt> rules and insert the result.</td>
+          <td>Depends on the time formatting string.</td>
+        </tr>
+        <tr>
+          <th class="category" colspan="4"><a href="Effectors.html#E005008">Miscellaneous</a></th>
+        </tr>
+        <tr>
+          <th>Effector Syntax</th>
+          <th>Effector Name</th>
+          <th>Description</th>
+          <th>Default Width</th>
+        </tr>
+        <tr>
+          <td class="code"><a href="Effectors.html#f0007110-c841-012c-34b5-0022fa8d53c2">!<i>n</i>*<i>c</i></a></td>
+          <td>RepeatingChar</td>
+          <td>Insert <i>n</i> occurrences of a character.</td>
+          <td>Not applicable.</td>
+        </tr>
+      </table>
+    </div>
+    <h2 name="links">Links</h2>
+    <ul>
+      <li>
+        <a href="http://rubyforge.org/projects/fto/">RubyForge project page</a>
+      </li>
+      <li>
+        <a href="rdoc/">FTO Rdoc pages</a>
+      </li>
+      <li>
+        <a href="WritingGuide">Guide to Writing Your Own Effectors</a>
+      </li>
+      <li>
+        <a href="">SYS$FAO online documentation</a>
+      </li>
+      <li>
+        <a href=""><tt>printf(3)</tt> <i>man</i> page</a>
+      </li>
+    </ul>
+  </body>
+</html>
