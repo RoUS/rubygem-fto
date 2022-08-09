@@ -1,3 +1,64 @@
+#--
+# Copyright © 2009,2022 Ken Coar
+#
+# Licensed under the Apache License, Version 2.0 (the "License"); you
+# may not use this file except in compliance with the License.  You
+# may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+# implied.  See the License for the specific language governing
+# permissions and limitations under the License.
+#++
+# frozen_string_literal: true
+
+require('rubygems')
+require('bundler')
+Bundler.setup
+require('byebug')
+require_relative('fto/version')
+require_relative('fto/classmethods')
+
+# @private
+#
+# Stuff from `SYS$FAO` that isn't yet implemented (and may not be
+# reasonable outside of OpenVMS).  Or that SYS$FAO lacks altogether,
+# but `printf(3)` <em>does</em> have.
+#
+# @todo
+#  ![n[.[n]]]F for floating point
+#
+# @todo
+#  !n%C Inserts a character string when the most recently
+#        evaluated argument has the value n. (Recommended for use
+#        with multilingual products.)
+# @todo
+#  !%E Inserts a character string when the value of the most
+#        recently evaluated argument does not match any preceding
+#        !n%C directives. (Recommended for use with multilingual
+#        products.)
+# @todo
+#  !%F 	Makes the end of a plurals statement.
+#
+# Other things..
+#
+# @todo
+#  Idempotency (not the right term..) -- run idempotent effectors
+#  first?
+#
+
+module FTO
+
+  #
+  def self.new(*args)
+    
+  end                           # def self.new(*args)
+    
+  nil
+end                            # module FTO
 #
 # = fto.rb - Formatted Text Output
 #
@@ -18,16 +79,17 @@
 # FTO is a Ruby library for formatting text strings.  In function it
 # is similar to <tt>printf(3)</tt>; however, the syntax of the format
 # effectors (sometimes called 'format descriptors') and the selection
-# of effectors bundled with the package are based on the SYS$FAO
+# of effectors bundled with the package are based on the `SYS$FAO`
 # user-mode system service found on OpenVMS.
 #
 # The FTO class is an extension of String, enhancing the constructor,
-# adding the <i>format()</i> instance method, and the
-# <i>registerEffector()</i> class method.
+# adding the #format instance method, and the
+# #registerEffector class method.
 #
 # In addition to the included list of effectors, FTO provides easy
-# extensibility by allowing the developer to write her own effector
-# handlers and registering them with <i>FormatText::FTO.registerEffector()</i>.
+# extensibility by allowing the developer to write hir own effector
+# handlers and registering them with
+# FormatText::FTO.registerEffector()</i>.
 #
 #--
 # Copyright 2009 Ken Coar
@@ -84,19 +146,24 @@
 # Stuff from SYS$FAO that isn't yet implemented (and may not be
 # reasonable outside of OpenVMS).  Or that SYS$FAO lacks altogether.
 #
-# @TODO: ![n[.[n]]]F for floating point
-# @TODO: !n%C Inserts a character string when the most recently
+# @todo
+#  ![n[.[n]]]F for floating point
+# @todo
+#  !n%C Inserts a character string when the most recently
 #        evaluated argument has the value n. (Recommended for use
 #        with multilingual products.)
-# @TODO: !%E Inserts a character string when the value of the most
+# @todo
+#  !%E Inserts a character string when the value of the most
 #        recently evaluated argument does not match any preceding
 #        !n%C directives. (Recommended for use with multilingual
 #        products.)
-# @TODO: !%F 	Makes the end of a plurals statement.
+# @todo
+#  !%F 	Makes the end of a plurals statement.
 #
 # Other things..
 #
-# @TODO: Idempotency (not the right term..) -- run idempotent effectors first?
+# @todo
+#   Idempotency (not the right term..) -- run idempotent effectors first?
 #++
 
 require 'rubygems'
@@ -108,7 +175,7 @@ module FormatText
   Version = Versionomy.parse('1.0.2')
   VERSION = Version.to_s
 
-  include GetText
+  include(GetText)
 
   #
   # Each time an effector's pattern is matched, its _code_ attribute
@@ -1941,3 +2008,9 @@ module FormatText
 
   true
 end                             # module FTO
+
+# Local Variables:
+# mode: ruby
+# indent-tabs-mode: nil
+# eval: (if (intern-soft "fci-mode") (fci-mode 1))
+# End:
